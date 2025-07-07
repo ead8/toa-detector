@@ -1,0 +1,27 @@
+services:
+  tao-detector:
+    build: .
+    container_name: tao-detector
+    restart: unless-stopped
+    ports:
+      - "8082:8080"  # Binance health check (external:internal)
+      - "8083:8081"  # OKX health check (external:internal)
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./master_data:/app/master_data
+    environment:
+      - TZ=UTC
+      - PYTHONPATH=/app:/app/binance:/app/okx
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || curl -f http://localhost:8081/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

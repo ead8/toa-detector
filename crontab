@@ -1,0 +1,8 @@
+# TAO-DETECTOR Cron Jobs
+# Run 7-day downloaders daily at midnight UTC
+0 0 * * * root cd /app/binance && /usr/local/bin/python binance_7days_downloader.py >> /app/logs/binance_7days_cron.log 2>&1
+0 1 * * * root cd /app/okx && /usr/local/bin/python okx_7days_downloader.py >> /app/logs/okx_7days_cron.log 2>&1
+# Clean up large log files weekly on Sunday
+0 2 * * 0 root find /app/logs -name "*.log" -size +100M -delete >> /app/logs/cleanup_cron.log 2>&1
+# Empty line required at end of crontab
+
