@@ -1,0 +1,35 @@
+# Virtual environments
+venv/
+**/venv/
+
+# Database files
+*.db
+**/*.db
+
+# Log files  
+*.log
+**/*.log
+
+# CSV data files
+*.csv
+**/*.csv
+**/data/*.csv
+**/data/*.txt
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Config files with sensitive data
+**/config/
+config/
+
+# Environment files
+.env
+**/.env
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+branch_structure.json

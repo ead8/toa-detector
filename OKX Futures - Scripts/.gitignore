@@ -1,0 +1,6 @@
+venv
+/data/*.csv
+*.db
+*.log
+**/data/*.csv
+**/data/*.txt
